@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Latihan Google  map</title>
+  <style type='text/css'>
+  #peta {
+  width: 100%;
+  height: 400px;
+
+} </style>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+   <script type="text/javascript">
+    
+    (function() {
+  window.onload = function() {
+var map;
+    //Parameter Google maps
+    var options = {
+      zoom: 12, //level zoom
+      //posisi tengah peta
+      center: new google.maps.LatLng(-5.367284, 105.244935),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    
+     // Buat peta di 
+    var map = new google.maps.Map(document.getElementById('peta'), options);
+     // Tambahkan Marker 
+     var locations = [
+        ['Alamat :'+'<p>Jalan Pramuka, Rajabasa, Kemiling Permai, Kemiling, Kota Bandar Lampung, Lampung 35152', -5.381262, 105.2210641],
+        ['Alamat :'+'<p>Jl. Zaenal Abidin Pagar Alam, Rajabasa, Kota Bandar Lampung, Lampung 35141',-5.3590439,105.2341747],
+        ['Alamat :'+'<p>Jl. ZA Pagar Alam No.72, Rajabasa, Kota Bandar Lampung, Lampung 35144', -5.3674773, 105.2338153],
+        ['Alamat :'+'<p>Jalan By Pass Soekarno Hatta,, Rajabasa Raya, Rajabasa, Kota Bandar Lampung, Lampung 35142', -5.3680861, 105.2332413],
+		['Alamat :'+'<p>Jl. Soekarno - Hatta, Labuhan Ratu, Kedaton, Kota Bandar Lampung, Lampung 35141',-5.366831, 105.2657282],
+		['Alamat :'+'<p>Jl. Soekarno Hatta (bypass) No.256, Way Dadi, Sukarame, Kota Bandar Lampung, Lampung 35131',-5.3884293, 105.2883554],
+		['Alamat :'+'<p>Jl. Soekarno - Hatta, Kalibalau Kencana, Kedamaian, Kota Bandar Lampung, Lampung 35245',-5.3964616, 105.2891493],
+		['Alamat :'+'<p>Jl. Imam Bonjol, Langkapura, Kota Bandar Lampung, Lampung 35151',-5.3940049, 105.2322435],
+		['Alamat :'+'<p>Jl. Cut Nyak Dien, Kaliawi, Tj. Karang Pusat, Kota Bandar Lampung, Lampung 35119',-5.4141709, 105.2468991],
+		['Alamat :'+'<p>Jl. P. Emir Moh. Noer, Durian Payung, Tj. Karang Pusat, Kota Bandar Lampung, Lampung 35211',-5.4216689, 105.246942],
+		['Alamat :'+'<p>Jl. RW. Monginsidi, Pengajaran, North Teluk Betung, Bandar Lampung City, Lampung 35212',-5.4320933, 105.2535081],
+		['Alamat :'+'<p>Jl. Pattimura No.1, Kupang Kota, Tlk. Betung Utara, Kota Bandar Lampung, Lampung 35211',-5.444376, 105.2662325],
+		['Alamat :'+'<p>Jl. Sultan Hasanudin, Kangkung, Bumi Waras, Kota Bandar Lampung, Lampung 35221',-5.4444401, 105.2696872],
+		['Alamat :'+'<p>Jl. Jend. Sudirman No.142, Pahoman, Engal, Kota Bandar Lampung, Lampung 35213',-5.4231002, 105.2712107],
+		['Alamat :'+'<p>Jl. Pangeran Antasari No.96, Kedamaian, Kota Bandar Lampung, Lampung 35122',-5.4068651, 105.2744079]
+		
+    ];
+      var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+     /* kode untuk menampilkan banyak marker */
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map,
+         icon: 'images/pin.png'
+      });
+     /* menambahkan event clik untuk menampikan
+          infowindows dengan isi sesuai denga
+        marker yang di klik */
+        
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  
+
+  };
+})();
+
+    </script>
+  </head>
+  <body>
+    
+    <div id="peta"></div>
+
+  </body>
+</html>
+
